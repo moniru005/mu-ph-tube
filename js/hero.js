@@ -15,21 +15,20 @@ const handleCategory = async () => {
         `;
         tabContainer.appendChild(tabCategory);
     });
+
 }
 
-const handleLoadVideos = async (id) => {
-
+const handleLoadVideos = async (id='1000') => {
     const res = await fetch(`https://openapi.programming-hero.com/api/videos/category/${id}`);
     const data = await res.json();
     const videos = data.data;
-
     console.log(videos);
 
     const videosByCategory = document.getElementById('videos-by-category');
     videosByCategory.textContent = '';
 
     videos.forEach(video => {
-    
+
         // const sortButton = document.getElementById("sort-by-view");
         // function sortVideosByViews() {
         //     allVideo.sort((a, b) => parseInt(b.others.views) - parseInt(a.others.views)); // Sort in descending order
@@ -37,13 +36,16 @@ const handleLoadVideos = async (id) => {
         // }
         // sortButton.addEventListener("click", sortVideosByViews);
 
+
+        const hourMin = `${Math.floor(video.others.posted_date / 3600 % 24)} hrs ${Math.floor((video.others.posted_date / 60) % 60)} min ago`;
+
         const showVideos = document.createElement('div');
         showVideos.innerHTML = `
         <div class="">
                 <div class="relative ">
                     <img class="h-56 w-full lg:h-56 rounded-lg" src="${video.thumbnail}" alt="">
                 <div id="play-time" class=" absolute  bottom-4 right-4 text-sm bg-[#171717] w-28 text-center text-white rounded-md"> 
-                    <h5 class="p-0.5"> ${Math.floor(video.others.posted_date / 3600 % 24)}hrs ${Math.floor((video.others.posted_date / 60) % 60)}min ago </h5>
+                    <h5 class="p-0.5">${video.others.posted_date>0 ? hourMin :''}</h5>
                 </div>
             </div>
             <div class="flex flex-row gap-2 mt-2 justify-center md:justify-start lg:justify-start ">
@@ -67,12 +69,11 @@ const handleLoadVideos = async (id) => {
 
         videosByCategory.appendChild(showVideos);
     });
-    
+
 }
 
-handleLoadVideos(id = '1000');
+handleLoadVideos();
 handleCategory();
 
-
-
+     
 
