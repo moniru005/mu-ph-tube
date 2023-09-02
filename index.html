@@ -13,13 +13,13 @@
     <nav>
         <div class="navbar bg-base-100 px-12 pt-4">
             <div class="navbar-start">
-                    <img src="./images/Logo.png" alt="">
+                <img src="./images/Logo.png" alt="">
             </div>
             <div class="navbar-center hidden lg:flex">
-                <button class="btn">Sort by view</button>
+                <button id="sort-by-view" class="btn">Sort by view</button>
             </div>
             <div class="navbar-end">
-                <a href="http://127.0.0.1:5500/blog.html" class="btn bg-[#FF1F3D] text-white">Blog</a>
+                <a href="https://hero-tube-a6.netlify.app/blog" class="btn bg-[#FF1F3D] text-white">Blog</a>
             </div>
         </div>
         <div class="flex justify-center mt-4">
@@ -30,18 +30,25 @@
     <!-- tab section -->
     <section>
         <div class="tab-container">
-            <div class="tabs tabs-boxed mx-auto justify-center bg-white gap-2 mt-4" id="tab-container">
-    
-              </div>
+            <div class="tabs tabs-boxed mx-auto justify-center bg-white gap-2 mt-4 " id="tab-container">
+                
+            </div>
+
+            <div id="show-empty-image" class="hidden">
+                <div class="mx-auto flex justify-center mt-24">
+                    <img src="./images/Icon.png" alt="">
+                </div>
+            </div>
         </div>
 
-        <div id="videos-by-category" class="grid grid-cols-4 gap-4 px-12 mt-12 mx-auto" >
+        <div id="videos-by-category" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 px-12 mt-12 mx-auto mb-6">
             
         </div>
     </section>
-    
+
     <!-- script -->
     <script src="./js/hero.js"></script>
+    
 </body>
 
 </html>
