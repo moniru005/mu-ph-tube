@@ -18,7 +18,7 @@ const handleCategory = async () => {
 
 }
 
-const handleLoadVideos = async (id='1000') => {
+const handleLoadVideos = async (id = '1000') => {
     const res = await fetch(`https://openapi.programming-hero.com/api/videos/category/${id}`);
     const data = await res.json();
     const videos = data.data;
@@ -42,12 +42,16 @@ const handleLoadVideos = async (id='1000') => {
              ${Math.floor(video.others.posted_date / 3600 % 24)} hrs ${Math.floor((video.others.posted_date / 60) % 60)} min ago
         </div> `;
 
+        const verifiedImage = `<div id="verified-image" class=""> 
+        <img src="./images/fi_10629607.png" alt="">
+        </div>`;
+
         const showVideos = document.createElement('div');
         showVideos.innerHTML = `
         <div class="">
                 <div class="relative ">
                     <img class="h-56 w-full lg:h-56 rounded-lg" src="${video.thumbnail}" alt="">
-                <h5 class="p-0.5">${video.others.posted_date>0 ? hourMin :''}</h5>
+                <h5 class="p-0.5">${video.others.posted_date > 0 ? hourMin : ''}</h5>
             </div>
             <div class="flex flex-row gap-2 mt-2 justify-center md:justify-start lg:justify-start ">
                 <div class="mt-1 ">
@@ -57,8 +61,8 @@ const handleLoadVideos = async (id='1000') => {
                     <h4 class="text-lg font-semibold">${video.title}</h4>
                     <div class="flex flex-row gap-2"> 
                         <h5 class="text-sm"> ${video.authors[0].profile_name}</h5>
-                        <div id="verified-image" class=""> 
-                            <img src="./images/fi_10629607.png" alt="">
+                        <div>
+                        ${video.authors[0].verified === true ? verifiedImage : ''}
                         </div>
                     </div>
                     <h5 class="text-sm"> ${video.others.views} views</h5>
@@ -76,5 +80,5 @@ const handleLoadVideos = async (id='1000') => {
 handleLoadVideos();
 handleCategory();
 
-     
+
 
