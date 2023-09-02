@@ -27,16 +27,11 @@ const handleLoadVideos = async (id = '1000') => {
     const videosByCategory = document.getElementById('videos-by-category');
     videosByCategory.textContent = '';
 
+    const sortButton = document.getElementById("sort-by-view");
     videos.forEach(video => {
 
-        // const sortButton = document.getElementById("sort-by-view");
-        // function sortVideosByViews() {
-        //     allVideo.sort((a, b) => parseInt(b.others.views) - parseInt(a.others.views)); // Sort in descending order
-        //     handleLoadVideos(allVideo); // Display the sorted list
-        // }
-        // sortButton.addEventListener("click", sortVideosByViews);
 
-
+        
         const hourMin = `
         <div id="play-time" class=" absolute  bottom-4 right-4 text-sm bg-[#171717] w-28 text-center text-white rounded-md"> 
              ${Math.floor(video.others.posted_date / 3600 % 24)} hrs ${Math.floor((video.others.posted_date / 60) % 60)} min ago
@@ -76,6 +71,7 @@ const handleLoadVideos = async (id = '1000') => {
     });
 
 }
+
 
 handleLoadVideos();
 handleCategory();
