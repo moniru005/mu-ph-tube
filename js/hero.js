@@ -37,16 +37,17 @@ const handleLoadVideos = async (id='1000') => {
         // sortButton.addEventListener("click", sortVideosByViews);
 
 
-        const hourMin = `${Math.floor(video.others.posted_date / 3600 % 24)} hrs ${Math.floor((video.others.posted_date / 60) % 60)} min ago`;
+        const hourMin = `
+        <div id="play-time" class=" absolute  bottom-4 right-4 text-sm bg-[#171717] w-28 text-center text-white rounded-md"> 
+             ${Math.floor(video.others.posted_date / 3600 % 24)} hrs ${Math.floor((video.others.posted_date / 60) % 60)} min ago
+        </div> `;
 
         const showVideos = document.createElement('div');
         showVideos.innerHTML = `
         <div class="">
                 <div class="relative ">
                     <img class="h-56 w-full lg:h-56 rounded-lg" src="${video.thumbnail}" alt="">
-                <div id="play-time" class=" absolute  bottom-4 right-4 text-sm bg-[#171717] w-28 text-center text-white rounded-md"> 
-                    <h5 class="p-0.5">${video.others.posted_date>0 ? hourMin :''}</h5>
-                </div>
+                <h5 class="p-0.5">${video.others.posted_date>0 ? hourMin :''}</h5>
             </div>
             <div class="flex flex-row gap-2 mt-2 justify-center md:justify-start lg:justify-start ">
                 <div class="mt-1 ">
